@@ -1,27 +1,27 @@
-import { Routes, Route } from "react-router-dom"
-import { useState, useEffect } from "react"
-import { NavBar } from "./components/nav/NavBar"
-import { Login } from "./components/auth/Login"
-import { Welcome } from "./components/welcome/Welcome"
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavBar } from "./components/nav/NavBar";
+import { Login } from "./components/auth/Login";
+import { Welcome } from "./components/welcome/Welcome";
+import { PostsList } from "./components/postsList/PostsList";
 
 // import your route components here, e.g. Welcome, DrinksList, etc.
 
-
 export const Rare = () => {
-  const [token, setTokenState] = useState(localStorage.getItem('auth_token'))
-  const [loggedInUser, setLoggedInUser] = useState(null)
+  const [token, setTokenState] = useState(localStorage.getItem("auth_token"));
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const setToken = (newToken) => {
-    localStorage.setItem('auth_token', newToken)
-    setTokenState(newToken)
-  }
+    localStorage.setItem("auth_token", newToken);
+    setTokenState(newToken);
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
       if (token) {
         try {
           const res = await fetch(`http://localhost:5000/users/${token}`, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${token}` },
           });
           if (!res.ok) throw new Error("User not found");
           const user = await res.json();
@@ -34,16 +34,16 @@ export const Rare = () => {
       }
     };
     fetchUser();
-  }, [token])
+  }, [token]);
 
   return (
     <div>
       <NavBar
         token={token}
         setToken={(newToken) => {
-          setLoggedInUser(null)
-          setToken(newToken)
-          if (!newToken) localStorage.removeItem("auth_token")
+          setLoggedInUser(null);
+          setToken(newToken);
+          if (!newToken) localStorage.removeItem("auth_token");
         }}
       />
       <div>
@@ -53,9 +53,10 @@ export const Rare = () => {
           <Routes>
             {/* Example routes, replace with your actual components */}
             <Route path="/" element={<Welcome />} />
+            <Route path="/PostsList" element={<PostsList />} />
           </Routes>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
