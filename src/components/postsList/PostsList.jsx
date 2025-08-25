@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./PostsList.css";
 
 export const PostsList = () => {
+  const navigate = useNavigate();
+
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -25,7 +28,11 @@ export const PostsList = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="add-post-btn" title="Add Post">
+        <button
+          className="add-post-btn"
+          title="Add Post"
+          onClick={() => navigate("/CreateNewPost")}
+        >
           Add Post <span className="plus-sign">+</span>
         </button>
       </div>

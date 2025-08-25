@@ -1,1 +1,135 @@
 @import 'bulma/css/bulma.css';
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+    background: #f7f6f3;
+    color: #034300;
+    /* Navy Blue */
+    min-height: 100vh;
+    letter-spacing: 0.02em;
+    font-size: 1.05rem;
+}
+
+.navbar {
+    background: #034300;
+    /* Navy Blue */
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 128, 0.10);
+    border-bottom: 3px solid #D2B48C;
+    padding: 0.5rem 0;
+}
+
+.navbar .navbar-brand h1 {
+    color: #ffffff;
+    background: #48c78e;
+    /* Sand Tan accent */
+    margin-left: 0.5rem;
+    font-family: 'Georgia', serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.create-post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 2.5rem 0 2rem 0;
+    background: #fff;
+    width: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.07);
+    margin-top: 2rem;
+}
+
+.create-post-container h2 {
+    color: #034300;
+    /* Navy Blue */
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    background: #f7f6f3;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    min-width: 320px;
+    max-width: 400px;
+    align-items: center;
+    border: 1px solid #D2B48C;
+}
+
+input,
+select,
+textarea {
+    padding: 0.7rem 1rem;
+    border: 1px solid #D2B48C;
+    /* Sand Tan border */
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #034300;
+    /* Navy Blue accent */
+    outline: none;
+    box-shadow: 0 0 0 2px #D2B48C33;
+}
+
+button {
+    background: #48c78e;
+    /* Navy Blue */
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #034300;
+    transition: background 0.2s, box-shadow 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+button:hover {
+    background: #034300;
+    /* Sand Tan */
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(210, 180, 140, 0.15);
+}
+
+.help.is-danger {
+    color: #ef4444;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .create-post-container {
+        padding: 1rem 0.5rem;
+    }
+
+    form {
+        min-width: 90vw;
+        max-width: 98vw;
+        padding: 1rem;
+    }
+}
