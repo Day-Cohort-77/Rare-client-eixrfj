@@ -1,4 +1,4 @@
-export const createCategory = (c) => {
+export const createNewCategoryService = (c) => {
   return fetch("http://localhost:5000/Categories", {
     method: "POST",
     headers: {

@@ -1,19 +1,12 @@
-import "categoryList.css";
+import "./CategoryList.css";
 import { useState, useEffect } from "react";
-import { createCategory } from "../../managers/CreateNewCategoryManager";
+import { getCategories } from "../../managers/GeneralManager";
 
 export const CategoryList = () => {
   const [categories, setCategories] = useState([]);
-  const [newCategory, setNewCategory] = useState("");
-
-  const fetchCategories = () => {
-    fetch("http://localhost:5000/Categories")
-      .then((res) => res.json())
-      .then(setCategories);
-  };
 
   useEffect(() => {
-    fetchCategories();
+    getCategories().then(setCategories);
   }, []);
 
   return (
@@ -30,26 +23,6 @@ export const CategoryList = () => {
           })}
         </tbody>
       </table>
-      <div>
-        <div>Create a Category:</div>
-        <input
-          className="category-name"
-          type="text"
-          placeholder="Enter Category Name"
-          value={newCategory}
-          onChange={(e) => setNewCategory(e.target.value)}
-        />
-      </div>
-      <button
-        onClick={() => {
-          createCategory({ label: newCategory }).then(() => {
-            setNewCategory("");
-            fetchCategories();
-          });
-        }}
-      >
-        Create
-      </button>
     </section>
   );
 };
