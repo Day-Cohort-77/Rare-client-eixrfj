@@ -4,6 +4,7 @@ import { NavBar } from "./components/nav/NavBar";
 import { Login } from "./components/auth/Login";
 import { Welcome } from "./components/welcome/Welcome";
 import { PostsList } from "./components/postsList/PostsList";
+import { CategoryList } from "./components/categoryList/CategoryList.jsx";
 
 // import your route components here, e.g. Welcome, DrinksList, etc.
 
@@ -54,6 +55,7 @@ export const Rare = () => {
             {/* Example routes, replace with your actual components */}
             <Route path="/" element={<Welcome />} />
             <Route path="/PostsList" element={<PostsList />} />
+            <Route path="/CategoryList" element={<CategoryList />} />
           </Routes>
         )}
       </div>
