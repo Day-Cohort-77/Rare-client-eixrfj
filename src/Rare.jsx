@@ -7,8 +7,8 @@ import { PostsList } from "./components/postsList/PostsList";
 import { CategoryList } from "./components/categoryList/CategoryList.jsx";
 import { CreateNewPost } from "./components/createNewPost/CreateNewPost";
 import { CreateCategory } from "./components/CreateCategory/CreateCategory.jsx";
-
 // import your route components here, e.g. Welcome, DrinksList, etc.
+
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem("auth_token"));
@@ -68,4 +68,3 @@ export const Rare = () => {
       </div>
     </div>
   );
-};
