@@ -1,10 +1,11 @@
 import "./CategoryList.css";
 import { useState, useEffect } from "react";
 import { getCategories } from "../../managers/GeneralManager";
+import { useNavigate } from "react-router-dom";
 
 export const CategoryList = () => {
   const [categories, setCategories] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getCategories().then(setCategories);
   }, []);
@@ -23,6 +24,9 @@ export const CategoryList = () => {
           })}
         </tbody>
       </table>
+      <button onClick={() => navigate("/CreateNewCategory")}>
+        Create Category
+      </button>
     </section>
   );
 };
