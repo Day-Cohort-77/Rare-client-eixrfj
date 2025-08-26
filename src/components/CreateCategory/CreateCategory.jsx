@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { createNewCategoryService } from "../../managers/CreateNewCategoryManager";
+import { useNavigate } from "react-router-dom";
 
 export const CreateCategory = () => {
   const [newCategory, setNewCategory] = useState("");
-
+  const navigate = useNavigate();
   return (
     <section>
-      {" "}
-      <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!newCategory) return;
+          createNewCategoryService({ label: newCategory }).then(() => {
+            setNewCategory("");
+            navigate("/CategoryList");
+          });
+        }}
+      >
+
         <div>Create a Category:</div>
         <input
           className="category-name"
@@ -15,16 +25,18 @@ export const CreateCategory = () => {
           placeholder="Enter Category Name"
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
+
+          required
         />
-      </div>
+        <button type="submit">Create</button>
+      </form>
       <button
-        onClick={() => {
-          createNewCategoryService({ label: newCategory }).then(() => {
-            setNewCategory("");
-          });
-        }}
+        type="button"
+        onClick={() => navigate("/CategoryList")}
+        style={{ marginTop: "1em" }}
       >
-        Create
+        Go Back
+
       </button>
     </section>
   );
