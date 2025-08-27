@@ -1,4 +1,4 @@
-import "./CategoryList.css";
+import "./categoryList.css";
 import { useState, useEffect } from "react";
 import { getCategories } from "../../managers/GeneralManager";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,9 @@ export const CategoryList = () => {
       </table>
       <button onClick={() => navigate("/CreateNewCategory")}>
         Create Category
+      </button>
+      <button onClick={() => navigate("/DeleteCategory")}>
+        Delete Category
       </button>
     </section>
   );

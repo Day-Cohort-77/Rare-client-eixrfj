@@ -4,9 +4,10 @@ import { NavBar } from "./components/nav/NavBar";
 import { Login } from "./components/auth/Login";
 import { Welcome } from "./components/welcome/Welcome";
 import { PostsList } from "./components/postsList/PostsList";
-import { CategoryList } from "./components/categoryList/CategoryList.jsx";
+import { CategoryList } from "./components/categoryList/categoryList.jsx";
 import { CreateNewPost } from "./components/createNewPost/CreateNewPost";
 import { CreateCategory } from "./components/CreateCategory/CreateCategory.jsx";
+import { DeleteCategory } from "./components/deleteCategory/DeleteCategory.jsx";
 
 // import your route components here, e.g. Welcome, DrinksList, etc.
 
@@ -63,6 +64,7 @@ export const Rare = () => {
               element={<CreateNewPost loggedInUser={loggedInUser} />}
             />
             <Route path="/CreateNewCategory" element={<CreateCategory />} />
+            <Route path="/DeleteCategory" element={<DeleteCategory />} />
           </Routes>
         )}
       </div>
