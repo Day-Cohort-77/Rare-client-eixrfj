@@ -19,6 +19,20 @@ export const CategoryList = () => {
             return (
               <tr key={category.id}>
                 <td>{category.label}</td>
+                <td>
+                  <button
+                    onClick={() =>
+                      navigate("/EditCategory", {
+                        state: {
+                          categoryId: category.id,
+                          label: category.label,
+                        },
+                      })
+                    }
+                  >
+                    Edit
+                  </button>
+                </td>
               </tr>
             );
           })}
