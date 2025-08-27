@@ -8,6 +8,7 @@ import { CategoryList } from "./components/categoryList/CategoryList.jsx";
 import { CreateNewPost } from "./components/createNewPost/CreateNewPost";
 import { CreateCategory } from "./components/CreateCategory/CreateCategory.jsx";
 import { PostDetails } from "./components/postDetails/PostDetails.jsx";
+import { EditPost } from "./components/editPost/EditPost.jsx";
 // import your route components here, e.g. Welcome, DrinksList, etc.
 
 
@@ -69,6 +70,10 @@ export const Rare = () => {
             />
             <Route
               path="/CreateNewCategory" element={<CreateCategory />} />
+            <Route
+              path="/EditPost/:postId"
+              element={<EditPost />}
+            />
           </Routes>
         )}
       </div>

@@ -29,9 +29,9 @@ export const CreateNewPost = ({ loggedInUser }) => {
             User_Id: loggedInUser?.id // automatically assign user ID
         };
         try {
-            await CreateNewPostService(newPost);
+            const createdPost = await CreateNewPostService(newPost);
             alert("New Post Created! Huzzah!");
-            navigate(`/PostDetails/${newPost.id}`);
+            navigate(`/posts/${createdPost.id}`);
         } catch (error) {
             console.error("Error creating post u stinker", error);
             alert("Failed to create new post");

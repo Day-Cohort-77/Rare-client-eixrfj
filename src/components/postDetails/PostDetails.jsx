@@ -7,7 +7,7 @@ export const PostDetails = ({ loggedInUser }) => {
     const [post, setPost] = useState(null);
     const navigate = useNavigate();
     const { postId } = useParams();
-    const loggedInUserId = loggedInUser; // Or get from context/state
+    const loggedIn = loggedInUser; // Or get from context/state
 
     useEffect(() => {
         getPostDetailsById(postId).then(setPost);
@@ -29,12 +29,12 @@ export const PostDetails = ({ loggedInUser }) => {
             <h3>Content</h3>
             <p>{post.content}</p>
             {/* Add more fields as needed */}
-            {post.userId === loggedInUserId && (
+            {post.user_Id === loggedIn?.id && (
                 <button
-                    className="edit-post-btn"
-                    onClick={() => navigate(`/posts/${postId}/EditPost`)}
+                    type="button"
+                    onClick={() => navigate(`/EditPost/${post.id}`)}
                 >
-                    Edit
+                    Edit Post
                 </button>
             )}
         </div>

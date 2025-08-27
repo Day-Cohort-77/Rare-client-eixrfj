@@ -9,13 +9,13 @@ export const PostsList = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("http://localhost:5000/posts?expand=user")
       .then((res) => res.json())
       .then(setPosts);
   }, []);
 
   const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(search.toLowerCase())
+    post.title ? post.title.toLowerCase().includes(search.toLowerCase()) : false
   );
 
   return (
@@ -57,9 +57,13 @@ export const PostsList = () => {
                   {post.title}
                 </span>
               </td>
-              <td>{post.user_id}</td>
+              <td>
+                {post.user
+                  ? `${post.user.first_name} ${post.user.last_name}`
+                  : post.user_id}
+              </td>
               <td>{post.publication_date}</td>
-              <td>{post.category_id}</td>
+              <td>{post.category?.label || post.category_id}</td>
               <td>{/* Tags placeholder */}</td>
             </tr>
           ))}
