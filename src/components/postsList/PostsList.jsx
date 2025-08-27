@@ -49,7 +49,14 @@ export const PostsList = () => {
         <tbody>
           {filteredPosts.map((post) => (
             <tr key={post.id}>
-              <td>{post.title}</td>
+              <td>
+                <span
+                  style={{ cursor: "pointer", color: "#034300", textDecoration: "underline" }}
+                  onClick={() => navigate(`/posts/${post.id}`)}
+                >
+                  {post.title}
+                </span>
+              </td>
               <td>{post.user_id}</td>
               <td>{post.publication_date}</td>
               <td>{post.category_id}</td>

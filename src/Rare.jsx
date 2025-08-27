@@ -7,6 +7,7 @@ import { PostsList } from "./components/postsList/PostsList";
 import { CategoryList } from "./components/categoryList/CategoryList.jsx";
 import { CreateNewPost } from "./components/createNewPost/CreateNewPost";
 import { CreateCategory } from "./components/CreateCategory/CreateCategory.jsx";
+import { PostDetails } from "./components/postDetails/PostDetails.jsx";
 // import your route components here, e.g. Welcome, DrinksList, etc.
 
 
@@ -62,9 +63,15 @@ export const Rare = () => {
               path="/CreateNewPost"
               element={<CreateNewPost loggedInUser={loggedInUser} />}
             />
-            <Route path="/CreateNewCategory" element={<CreateCategory />} />
+            <Route
+              path="/posts/:postId"
+              element={<PostDetails loggedInUser={loggedInUser} />}
+            />
+            <Route
+              path="/CreateNewCategory" element={<CreateCategory />} />
           </Routes>
         )}
       </div>
     </div>
   );
+}
