@@ -1,63 +1,88 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { getCategories } from "../../managers/GeneralManager";
+import { PostCard } from "../PostCard/PostCard";
+import { Link } from "react-router-dom";
 import "./PostsList.css";
 
 export const PostsList = () => {
-  const navigate = useNavigate();
-
   const [posts, setPosts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [search, setSearch] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("http://localhost:5000/posts?expand=user")
       .then((res) => res.json())
-      .then(setPosts);
+      .then(setPosts)
+      .catch((err) => {
+        setPosts([]);
+        console.error("Fetch error:", err);
+      });
+    getCategories().then(setCategories);
   }, []);
 
-  const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    let filtered = posts;
+    if (selectedCategory !== "") {
+      filtered = filtered.filter(
+        (post) => post.category_Id === parseInt(selectedCategory)
+      );
+    }
+    if (search.trim() !== "") {
+      filtered = filtered.filter((post) =>
+        post.title ? post.title.toLowerCase().includes(search.toLowerCase()) : false
+      );
+    }
+    setFilteredPosts(filtered);
+  }, [posts, selectedCategory, search]);
 
   return (
-    <section className="posts-list">
-      <div className="posts-header-row">
+    <div className="posts-list-container">
+      <h2 className="posts-list-title">Posts List</h2>
+      <div className="filter-controls" style={{ marginBottom: "1rem" }}>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.label || category.category}
+            </option>
+          ))}
+        </select>
         <input
           className="posts-search"
           type="text"
-          placeholder="Search"
+          placeholder="Search title..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          style={{ marginLeft: "1rem" }}
         />
         <button
-          className="add-post-btn"
-          title="Add Post"
-          onClick={() => navigate("/CreateNewPost")}
+          type="button"
+          onClick={() => {
+            setSelectedCategory("");
+            setSearch("");
+          }}
+          style={{ marginLeft: "1rem" }}
         >
-          Add Post <span className="plus-sign">+</span>
+          Clear Filter
         </button>
+        <Link to="/CreateNewPost">
+          <button className="add-post-btn" style={{ marginLeft: "1rem" }}>
+            Add Post <span className="plus-sign">+</span>
+          </button>
+        </Link>
       </div>
-      <table className="posts-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Tags</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredPosts.map((post) => (
-            <tr key={post.id}>
-              <td>{post.title}</td>
-              <td>{post.user_id}</td>
-              <td>{post.publication_date}</td>
-              <td>{post.category_id}</td>
-              <td>{/* Tags placeholder */}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
+      <div className="posts-list">
+        {filteredPosts.map((post) => (
+          <Link to={`/posts/${post.id}`} className="post-link" key={post.id}>
+            <PostCard post={post} />
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 };

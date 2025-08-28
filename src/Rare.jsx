@@ -7,6 +7,8 @@ import { PostsList } from "./components/postsList/PostsList";
 import { CategoryList } from "./components/categoryList/categoryList.jsx";
 import { CreateNewPost } from "./components/createNewPost/CreateNewPost";
 import { CreateCategory } from "./components/CreateCategory/CreateCategory.jsx";
+import { PostDetails } from "./components/postDetails/PostDetails.jsx";
+import { EditPost } from "./components/editPost/EditPost.jsx";
 
 import { DeleteCategory } from "./components/deleteCategory/DeleteCategory.jsx";
 import { EditCategory } from "./components/editCategory/EditCategory.jsx";
@@ -68,6 +70,16 @@ export const Rare = () => {
               path="/CreateNewPost"
               element={<CreateNewPost loggedInUser={loggedInUser} />}
             />
+            <Route
+              path="/posts/:postId"
+              element={<PostDetails loggedInUser={loggedInUser} />}
+            />
+            <Route
+              path="/CreateNewCategory" element={<CreateCategory />} />
+            <Route
+              path="/EditPost/:postId"
+              element={<EditPost />}
+            />
 
             {/* CATEGORY CRUD */}
             <Route path="/CreateNewCategory" element={<CreateCategory />} />
@@ -78,4 +90,4 @@ export const Rare = () => {
       </div>
     </div>
   )
-};
+}
