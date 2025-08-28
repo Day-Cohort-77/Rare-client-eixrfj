@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPostDetailsById } from "../../managers/GeneralManager"; // Adjust if needed
-import "./PostDetails.css";
+import "./PostDetails.css"
 
 export const PostDetails = ({ loggedInUser }) => {
     const [post, setPost] = useState(null);
