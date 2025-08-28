@@ -17,6 +17,7 @@ export const CreateCategory = () => {
           });
         }}
       >
+
         <div>Create a Category:</div>
         <input
           className="category-name"
@@ -24,6 +25,7 @@ export const CreateCategory = () => {
           placeholder="Enter Category Name"
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
+
           required
         />
         <button type="submit">Create</button>
@@ -34,6 +36,7 @@ export const CreateCategory = () => {
         style={{ marginTop: "1em" }}
       >
         Go Back
+
       </button>
     </section>
   );

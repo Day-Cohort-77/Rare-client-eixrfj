@@ -7,10 +7,13 @@ import { PostsList } from "./components/postsList/PostsList";
 import { CategoryList } from "./components/categoryList/categoryList.jsx";
 import { CreateNewPost } from "./components/createNewPost/CreateNewPost";
 import { CreateCategory } from "./components/CreateCategory/CreateCategory.jsx";
+
 import { DeleteCategory } from "./components/deleteCategory/DeleteCategory.jsx";
 import { EditCategory } from "./components/editCategory/EditCategory.jsx";
 
+
 // import your route components here, e.g. Welcome, DrinksList, etc.
+
 
 export const Rare = () => {
   const [token, setTokenState] = useState(localStorage.getItem("auth_token"));
@@ -74,5 +77,5 @@ export const Rare = () => {
         )}
       </div>
     </div>
-  );
+  )
 };
