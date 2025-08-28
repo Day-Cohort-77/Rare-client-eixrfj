@@ -1,4 +1,4 @@
-import "./CategoryList.css";
+import "./categoryList.css";
 import { useState, useEffect } from "react";
 import { getCategories } from "../../managers/GeneralManager";
 
@@ -21,6 +21,20 @@ export const CategoryList = () => {
             return (
               <tr key={category.id}>
                 <td>{category.label}</td>
+                <td>
+                  <button
+                    onClick={() =>
+                      navigate("/EditCategory", {
+                        state: {
+                          categoryId: category.id,
+                          label: category.label,
+                        },
+                      })
+                    }
+                  >
+                    Edit
+                  </button>
+                </td>
               </tr>
             );
           })}
@@ -28,6 +42,9 @@ export const CategoryList = () => {
       </table>
       <button onClick={() => navigate("/CreateNewCategory")}>
         Create Category
+      </button>
+      <button onClick={() => navigate("/DeleteCategory")}>
+        Delete Category
       </button>
 
     </section>
